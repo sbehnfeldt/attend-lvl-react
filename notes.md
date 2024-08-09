@@ -11,6 +11,16 @@ composer require laravel/breeze
 php artisan breeze:install react
 npm i
 git init .
+```
+
+## Cloning
+To clone to a new dev environment:
+```shell
+git clone https://github.com/sbehnfeldt/attend-lvl-react.git
+cd attend-lvl-react
+cp .env.example .env
+php artisan key:generate
+touch database/database.sqlite
 php artisan migrate:fresh --seed
 ```
 
