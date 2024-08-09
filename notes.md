@@ -49,6 +49,7 @@ Generate the Classroom model and all other associated classes:
 
 ```php
 php artisan make:model -a Classroom
+php artisan make:model -a Students
 ```
 
 - Edit the migration
