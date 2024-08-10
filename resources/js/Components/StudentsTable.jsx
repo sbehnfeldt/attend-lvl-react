@@ -16,7 +16,6 @@ const StudentsTable = ({students}) => {
                     <TableRow>
                         <TableCell>Family Name</TableCell>
                         <TableCell>First Name</TableCell>
-                        <TableCell>Classroom</TableCell>
                         <TableCell>Created By</TableCell>
                         <TableCell>Created At</TableCell>
                         <TableCell>Updated By</TableCell>
@@ -25,11 +24,13 @@ const StudentsTable = ({students}) => {
                 </TableHead>
 
                 <TableBody>
-                    {students.map((student) => (
+                    {students.sort((a, b) => {
+                        return a.family_name > b.family_name || a.first_name > b.first_name;
+                    }).map((student) => (
+
                         <TableRow key={student.id}>
                             <TableCell>{student.family_name}</TableCell>
                             <TableCell>{student.first_name}</TableCell>
-                            <TableCell>{student.classroom_id}</TableCell>
                             <TableCell>{student.created_by}</TableCell>
                             <TableCell>{student.created_at}</TableCell>
                             <TableCell>{student.updated_by}</TableCell>
