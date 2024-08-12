@@ -4,14 +4,6 @@ import {Head} from '@inertiajs/react';
 import StudentsTable from "@/Components/StudentsTable.jsx";
 
 const Schedules = ({auth, classrooms, students}) => {
-    // const groupedStudents = students.reduce((acc, student) => {
-    //     const {classroom_id} = student;
-    //     if (!acc[classroom_id]) {
-    //         acc[classroom_id] = [];
-    //     }
-    //     acc[classroom_id].push(student);
-    //     return acc;
-    // }, {});
 
     return (
         <AuthenticatedLayout
@@ -22,15 +14,32 @@ const Schedules = ({auth, classrooms, students}) => {
 
             {classrooms
                 .sort((a, b) => {
-                    return (a.ordering < b.ordering);
+                    if ( a.ordering < b.ordering ) {
+                        return 1;
+                    } else if ( a.ordering > b.ordering ) {
+                        return -1;
+                    }
+                    return 0;
                 })
                 .map((classroom) => {
-                    const classroomStudents = students.filter((student) => {
-                        return student.classroom_id === classroom.id;
-                    })
+                    const classroomStudents = students
+                        .filter((student) => {
+                            return student.classroom_id === classroom.id;
+                        })
                         .sort((a, b) => {
-                            return (a.family_name < b.family_name) || (a.first_name < b.first_name);
+                            if ( a.family_name < b.family_name ) {
+                                return 1;
+                            }
+                            else if (a.family_name > b.family_name) {
+                                return -1;
+                            } else if ( a.first_name < b.first_name ) {
+                                return 1;
+                            } else if ( a.first_name > b.first_name) {
+                                return -1;
+                            }
+                            return 0;
                         });
+
                     return (
                         <div className="py-12">
                             <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
