@@ -20,3 +20,4 @@ yarn-error.log
 /.vscode
 /identifier.sqlite
 /public/style.css
+/logs/

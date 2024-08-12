@@ -18,10 +18,16 @@ To clone to a new dev environment:
 ```shell
 git clone https://github.com/sbehnfeldt/attend-lvl-react.git
 cd attend-lvl-react
+mkdir logs
+npm i
+composer i
 cp .env.example .env
 php artisan key:generate
 touch database/database.sqlite
 php artisan migrate:fresh --seed
+npm run sass:compile
+npm run sass:watch
+npm run dev
 ```
 
 Seeding creates, among other things, the "users" table and a single user with a username of "test@example.com"
