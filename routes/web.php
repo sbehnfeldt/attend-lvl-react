@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\Pages\ClassroomController;
 use App\Http\Controllers\Pages\ProfileController;
+use App\Http\Controllers\Pages\SchedulesController;
 use App\Http\Controllers\Pages\StudentController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -34,6 +36,10 @@ Route::get('/classrooms', [ClassroomController::class, 'index'])
 Route::get('/students', [StudentController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('students');
+
+Route::get('/schedules', [SchedulesController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('schedules');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
