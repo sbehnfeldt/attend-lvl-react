@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Pages\AdminController;
 use App\Http\Controllers\Pages\ClassroomController;
 use App\Http\Controllers\Pages\ProfileController;
 use App\Http\Controllers\Pages\SchedulesController;
@@ -11,35 +12,39 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
+        'canLogin'       => Route::has('login'),
+        'canRegister'    => Route::has('register'),
         'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
+        'phpVersion'     => PHP_VERSION,
     ]);
 });
 
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard', [
-        'canLogin' => Route::has('login'),
+        'canLogin'    => Route::has('login'),
         'canRegister' => Route::has('register')
     ]);
 })
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+     ->middleware(['auth', 'verified'])
+     ->name('dashboard');
 
 
 Route::get('/classrooms', [ClassroomController::class, 'index'])
-    ->middleware(['auth', 'verified'])
-    ->name('classrooms');
+     ->middleware(['auth', 'verified'])
+     ->name('classrooms');
 
 Route::get('/students', [StudentController::class, 'index'])
-    ->middleware(['auth', 'verified'])
-    ->name('students');
+     ->middleware(['auth', 'verified'])
+     ->name('students');
 
 Route::get('/schedules', [SchedulesController::class, 'index'])
-    ->middleware(['auth', 'verified'])
-    ->name('schedules');
+     ->middleware(['auth', 'verified'])
+     ->name('schedules');
+
+Route::get('/admin', [AdminController::class, 'index'])
+     ->middleware(['auth', 'verified'])
+     ->name('admin');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
