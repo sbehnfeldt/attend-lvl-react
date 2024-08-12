@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\ClassroomController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\StudentController;
+use App\Http\Controllers\Pages\ClassroomController;
+use App\Http\Controllers\Pages\ProfileController;
+use App\Http\Controllers\Pages\StudentController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
